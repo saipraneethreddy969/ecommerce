@@ -11,18 +11,19 @@ float:left;
 </style>
 <body>
 <div> 
-<form action=" " method="POST">{%csrf_token%}
+<form action="signin/" method="POST">{%csrf_token%}
 <div>
 <table>
 <tr>
-<th id="text">email id:</th>
-<th><input type="email" name="email"></th>
+<th id="text">username:
+</th>
+<th><input type="text" name="username"></th>
 </tr>
 </div>
 <div>
 <tr>
 <th id="text">password:</th>
-<th><input type="password" name="psword"></th>
+<th><input type="password" name="password"></th>
 </tr>
 </div>
 </table>
