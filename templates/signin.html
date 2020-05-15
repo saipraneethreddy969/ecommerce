@@ -1,0 +1,32 @@
+<html>
+<head>
+<style>
+th#text{
+width:100px;
+text-align:left;
+}
+#submit {
+float:left;
+}
+</style>
+<body>
+<div> 
+<form action=" " method="POST">{%csrf_token%}
+<div>
+<table>
+<tr>
+<th id="text">email id:</th>
+<th><input type="email" name="email"></th>
+</tr>
+</div>
+<div>
+<tr>
+<th id="text">password:</th>
+<th><input type="password" name="psword"></th>
+</tr>
+</div>
+</table>
+<input id="submit" type="submit" value="submit">
+</div>
+</body>
+</html>

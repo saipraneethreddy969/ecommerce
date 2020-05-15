@@ -1,0 +1,50 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ecommerce</title>
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/commerce.css' %}">
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js">
+	
+</script>
+
+</head>
+<body>
+<nav class="navbar">
+	
+<a href="" class="navcon" id="ancho">Cart</a>
+		<span class="navcon"><input type="text" name="search" id="searchbox"><input type="submit" name="submit" 
+			id="submit" value="search"></span>
+</nav>
+
+<div class="menu">
+  <span></span>
+</div>
+
+<div class="navbar-menu">
+  <ul class="menu-listing">
+    <li><a href="/signin">Sign in</a></li>
+    <li><a href="/register">register</a></li>
+    
+  </ul>
+</div>
+<div class="content">
+<h3>Mens</h3>
+<div class="men">
+  <div class="iminner"><img src="{% static 'images/shirt.jpg' %}"
+    title="Mens Shirts"></div>
+  <div class="iminner"><img src="{% static 'images/blazer.jpg' %} " title="Mens Blazer"></div>
+  <div class="iminner"><img src="{% static 'images/jacket1.jpg' %}" title="Mens Jackets"></div>
+</div>
+<h3>Women</h3>
+<div class="women">
+  <div class="iminner"><img src="{% static 'images/shirt.jpg' %}"></div>
+  <div class="iminner"><img src="{% static '/images/shirt1.jpg' %}"></div>
+  <div class="iminner"><img src="{% static 'images/shirt2.jpg' %}"></div>
+</div>
+    </div>	
+<script type="text/javascript" src="{% static 'js/ec.js' %}"></script>
+</body>
+</html>
