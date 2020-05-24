@@ -15,9 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.conf.urls.static import static
+from django.conf import settings
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('home.urls')),
     path('signin/',include('home.urls')),
      path('register/',include('home.urls')),
-]
+     path('base/',include('home.urls')),
+     path('apparels/',include('home.urls')),
+     path('cart/',include('home.urls')),
+     path('checkout/',include('home.urls'))
+]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

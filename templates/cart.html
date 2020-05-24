@@ -1,0 +1,31 @@
+{%extends 'base.html'%}
+{%block content%}
+{%load static%}
+   <div class="cartitem">
+
+<table>
+    <tr>
+    <th class="long"></th>
+    <th class="long"><strong>Item</strong></th>
+    <th><strong>Price</strong></th>
+    <th><strong>Quantity</strong></th>
+    <th><strong>Total</strong></th>
+    
+    </tr>
+    <tr>
+        <td><img src="{% static 'images/blazer.jpg' %}" height="200px" width="50px">
+        </td>
+        <td>mens blazer</td>
+        <td>$50</td>
+        <td>2</td>
+        <td>$100</td>
+    </tr>
+</table>
+</div>
+
+<div class="totalcartitems">
+    <span id="totalleft"><Strong>Items:3</Strong></span>
+    <span id="totalright"><Strong>Price:$100</Strong></span>
+</div>
+
+{%endblock%}

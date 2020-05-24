@@ -1,0 +1,96 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/commerce.css' %}">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js">
+    </script>
+
+    <style>
+      .extend {
+        margin-top:60px;
+      }
+      #cart_number {
+        padding-left:5px;
+          height: 20px;
+          width: 20px;
+          border-radius: 50%;
+        
+        background-color: red;
+        
+      }
+      table {
+        width:100%
+      }
+      th {
+        width:15%;
+        text-align:left;
+        empty-cells: show;
+        border-bottom:1px solid black;
+      }
+
+    th>.long {
+        width:22%;
+      }
+
+      .cartitem {
+        margin:20px;
+      }
+
+      td {
+        padding:5px;
+        height:200px;
+      }
+
+      .totalcartitems {
+        position:relative;
+        width:33%;
+        margin-left:33%;
+        margin-top:50px;
+      }
+
+      #totalleft {
+        float:left;
+      }
+
+      #totalright {
+        float:right;
+      }
+
+    </style>
+    </head>
+
+        <body>
+    <nav class="navbar">
+	
+        <a href="" class="navcon" id="ancho">Cart<span id="cart_number">9</span></a>
+        </nav>
+       <div class="menu">
+         <span></span>
+       </div>
+        <div class="navbar-menu">
+          <ul class="menu-listing">
+            {% if user.is_authenticated %}
+            <li>{{user.first_name}}</li>
+            <li><a href="logout">logout</a></li>
+            {% else %}
+            <li><a href="/signin">Sign in</a></li>
+            <li><a href="/register">register</a></li>
+            {% endif %}
+            
+          </ul>
+        </div>
+       <div class="extend">
+        {%block content%}
+        {%endblock%}
+       </div> 
+        
+        
+        <script type="text/javascript" src="{% static 'js/ec.js' %}"></script>
+
+</body>
+</html>

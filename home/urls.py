@@ -5,4 +5,8 @@ urlpatterns = [
     path('signin/',views.signin),
     path('register/',views.register),
     path('logout/',views.logout),
+    path('base/',views.base),
+    path('apparels/',views.apparels),
+    path('cart/',views.cart),
+    path('checkout/',views.checkout)
 ]

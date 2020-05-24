@@ -1,6 +1,18 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User,auth
-# Create your views here.
+from .models import Products
+def base(request):
+    return render(request,'base.html')
+
+def apparels(request):
+
+    products=Products.objects.all()
+    context={
+        'product':products
+    }
+
+    return render(request,'apparels.html',context)
+    
 def index(request):
     return render(request,'index.html')
 def logout(request):
@@ -16,6 +28,8 @@ def signin(request):
             context={'user':user}
             auth.login(request,user)
             return redirect('/',context)
+        else:
+            return redirect(request.META['HTTP_REFERER'])
     else:
         return render(request,'signin.html')
 def register(request):
@@ -30,3 +44,13 @@ def register(request):
             return redirect('/')
     else:
         return render(request,'register.html')
+
+
+def cart(request):
+    return render(request,'cart.html')
+
+
+def checkout(request):
+    return render(request,'checkout.html')
+
+    
