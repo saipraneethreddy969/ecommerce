@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User,auth
-from .models import Products
+from .models import Products,customer,Order,orderitem
 def base(request):
     return render(request,'base.html')
 
@@ -47,7 +47,15 @@ def register(request):
 
 
 def cart(request):
-    return render(request,'cart.html')
+    if(request.user.is_authenticated):
+        customer_obj=request.user.customer
+        order,created=Order.objects.get_or_create(customer=customer_obj,opencart=True)
+        items=order.orderitem_set.all()
+        context={'items':items,'order':order}
+    else:
+        items=[]
+        context={'items':items,'order':order}
+    return render(request,'cart.html',context)
 
 
 def checkout(request):

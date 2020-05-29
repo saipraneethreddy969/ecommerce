@@ -12,20 +12,22 @@
     <th><strong>Total</strong></th>
     
     </tr>
+    {% for item in items%}
     <tr>
-        <td><img src="{% static 'images/blazer.jpg' %}" height="200px" width="50px">
+        <td><img src="{{item.product.imageURL }}" height="200px" width="50px">
         </td>
-        <td>mens blazer</td>
-        <td>$50</td>
-        <td>2</td>
-        <td>$100</td>
+        <td>{{item.product.name}}</td>
+        <td>${{item.product.price}}</td>
+        <td>{{item.quantity}}</td>
+        <td>${{item.orderitem_total}}</td>
     </tr>
+    {%endfor%}
 </table>
 </div>
 
 <div class="totalcartitems">
-    <span id="totalleft"><Strong>Items:3</Strong></span>
-    <span id="totalright"><Strong>Price:$100</Strong></span>
+    <span id="totalleft"><Strong>Items:{{order.cart_items}}</Strong></span>
+    <span id="totalright"><Strong>Price:${{order.cart_total}}</Strong></span>
 </div>
 
 {%endblock%}
