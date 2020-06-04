@@ -75,18 +75,16 @@
         margin-top:60px;
       }
       #cart_number {
-        margin:0 auto;
-        display:inline-block;
-        padding-left:10px;
           height: 20px;
-          width: 10px;
+          width: 20px;
           border-radius: 50%;
-        
+          display:inline-block;
+          align-items: center; 
+    justify-content: center;
+    text-align: center; 
+
         background-color: red;
         
-      }
-      #cnum {
-        text-align: center;
       }
       table {
         width:100%
@@ -175,7 +173,7 @@
         <body>
     <nav class="navbar">
 	
-        <a href="/cart" class="navcon" id="ancho">Cart<span ><div id="cart_number" ><span id="cnum">{{order.cart_items}}</span></div></span></a>
+        <a href="/cart" class="navcon" id="ancho">Cart<span ><div id="cart_number" >{{order.cart_items}}</div></a>
         </nav>
        <div class="menu">
          <span></span>

@@ -67,7 +67,16 @@ def cart(request):
 
 
 def checkout(request):
-    return render(request,'checkout.html')
+    if(request.user.is_authenticated):
+        customer_obj=request.user.customer
+        order,created=Order.objects.get_or_create(customer=customer_obj,opencart=True)
+        items=order.orderitem_set.all()
+        context={'items':items,'order':order}
+    else:
+        items=[]
+        order={'cart_items':0,'cart_total':0}
+        context={'items':items,'order':order}
+    return render(request,'checkout.html',context)
 
 def add_cart(request):
     data=json.loads(request.body)  
