@@ -18,7 +18,7 @@
         </td>
         <td>{{item.product.name}}</td>
         <td>${{item.product.price}}</td>
-        <td>{{item.quantity}}</td>
+        <td>{{item.quantity}} <div class="arrows"><div class="arrow-up update-cart"  data-product={{item.product.id}} data-action="add"    ></div><div class="arrow-down update-cart"  data-product={{item.product.id}} data-action="remove"  ></div></div></td>
         <td>${{item.orderitem_total}}</td>
     </tr>
     {%endfor%}

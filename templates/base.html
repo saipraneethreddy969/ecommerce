@@ -9,19 +9,84 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/commerce.css' %}">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js">
     </script>
-
+    <script type="text/javascript" src="{% static 'js/ec.js' %}"></script>
     <style>
+
+      .container {
+        margin:1.66%;
+          float:left;
+          width: 30%;
+          height:350px;
+        }
+        
+        .image {
+          width:100%;
+          height:249px;
+        
+        }
+        
+        h4 {
+          margin:5px;
+        }
+        
+        button {
+          display: inline-block;
+          border:none;
+          background-color: pink;
+        }
+        p {
+          padding:2px;
+          margin:0;
+        }
+        .lower {
+          padding-left: 5px;
+          padding-right: 5px;
+          padding-top: 5px;
+          opacity:9999;
+          background-color: white;
+        }
+        .lower p {
+          text-align: center;
+        }
+        
+        .price {
+          padding-left:10px;
+          padding-right:10px;
+        }
+        #price_abel {
+          float:left;
+        }
+        #price {
+          float:right;
+        }
+        
+        #name {
+          text-align: center;
+        }
+        #addcart{
+          float: left;
+        }
+        
+        #buynow {
+          float:right;
+        }
+
       .extend {
         margin-top:60px;
       }
       #cart_number {
-        padding-left:5px;
+        margin:0 auto;
+        display:inline-block;
+        padding-left:10px;
           height: 20px;
-          width: 20px;
+          width: 10px;
           border-radius: 50%;
         
         background-color: red;
         
+      }
+      #cnum {
+        text-align: center;
       }
       table {
         width:100%
@@ -61,13 +126,56 @@
         float:right;
       }
 
+      .arrow-up {
+        
+        display:inline-block;
+        width:0px;
+        height:0px;
+        border-color: transparent transparent black transparent;
+    border-style: solid;
+    border-width: 0px 8px 8px 8px;
+      }
+
+      .arrow-down {
+        width:0px;
+        height:0px;
+        border-color: black transparent transparent transparent;
+    border-style: solid;
+    border-width: 8px 8px 0px 8px;
+      } 
+
+      .arrows {
+        display:inline-block
+      }
+
     </style>
+    <script type="text/javascript">
+      var user='{{request.user}}';
+
+      function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    var csrftoken = getCookie('csrftoken');
+
+    </script>
     </head>
 
         <body>
     <nav class="navbar">
 	
-        <a href="/cart" class="navcon" id="ancho">Cart<span id="cart_number"><span>{{order.cart_items}}</span></a>
+        <a href="/cart" class="navcon" id="ancho">Cart<span ><div id="cart_number" ><span id="cnum">{{order.cart_items}}</span></div></span></a>
         </nav>
        <div class="menu">
          <span></span>
@@ -89,8 +197,8 @@
         {%endblock%}
        </div> 
         
-        
+       <script type="text/javascript" src="{% static 'js/addcart.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/ec.js' %}"></script>
-
+        
 </body>
 </html>

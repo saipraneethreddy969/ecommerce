@@ -1,16 +1,23 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponse
 from django.contrib.auth.models import User,auth
 from .models import Products,customer,Order,orderitem
+from django.http import JsonResponse
+import json
 def base(request):
     return render(request,'base.html')
 
 def apparels(request):
 
     products=Products.objects.all()
-    context={
-        'product':products
-    }
-
+    if(request.user.is_authenticated):
+        customer_obj=request.user.customer
+        order,created=Order.objects.get_or_create(customer=customer_obj,opencart=True)
+        items=order.orderitem_set.all()
+        context={'items':items,'order':order,'product':products}
+    else:
+        items=[]
+        order={'cart_items':0,'cart_total':0}
+        context={'items':items,'order':order,'product':products}
     return render(request,'apparels.html',context)
     
 def index(request):
@@ -54,6 +61,7 @@ def cart(request):
         context={'items':items,'order':order}
     else:
         items=[]
+        order={'cart_items':0,'cart_total':0}
         context={'items':items,'order':order}
     return render(request,'cart.html',context)
 
@@ -61,4 +69,22 @@ def cart(request):
 def checkout(request):
     return render(request,'checkout.html')
 
+def add_cart(request):
+    data=json.loads(request.body)  
+    productid=data['productId']
+    action=data['action']
+    print(productid,action)
+    product=Products.objects.get(id=productid)
+    customer_obj=request.user.customer
+    order,created=Order.objects.get_or_create(customer=customer_obj,opencart=True)
+    Orderitem,created=orderitem.objects.get_or_create(order=order,product=product)
+    if(action=="add"):
+        Orderitem.quantity=(Orderitem.quantity+1)
+    elif(action=="remove"):
+        Orderitem.quantity=(Orderitem.quantity-1)
     
+    Orderitem.save()
+    if(Orderitem.quantity<=0):
+        Orderitem.delete()
+
+    return JsonResponse("hello",safe=False)
