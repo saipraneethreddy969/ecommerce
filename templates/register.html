@@ -7,20 +7,20 @@
 </head>
 <body>
     <form action="register/" method="POST">{%csrf_token%}
-        firstname:<input type="text" name='first_name'>
+        firstname:<input type="text" name='first_name' required>
         <br>
         <br>
-        lastname:<input type="text" name="last_name">
+        lastname:<input type="text" name="last_name" required>
         <br>
         <br>
-        password:<input type="password" name='password'>
+        password:<input type="password" name='password' required>
         <br>
         <br>
 
-        email:<input type="email" name="email">
+        email:<input type="email" name="email" required>
         <br>
         <br>
-        username:<input type="text" name="username">
+        username:<input type="text" name="username" required>
         <br>
         <br>
         <input type="submit">

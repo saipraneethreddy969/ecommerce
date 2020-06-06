@@ -56,6 +56,7 @@ class orderitem(models.Model):
 
 class shippingAddress(models.Model):
     customer=models.ForeignKey(customer,on_delete=models.CASCADE)
+    order=models.OneToOneField(Order,on_delete=models.SET_NULL,null=True)
     name=models.CharField(max_length=100)
     zipcode=models.CharField(max_length=100)
     city=models.CharField(max_length=100)

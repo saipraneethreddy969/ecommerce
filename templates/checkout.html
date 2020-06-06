@@ -1,16 +1,77 @@
 {%extends 'base.html'%}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-
     {%block content%}
-    
+    <div>
+        cart-items:{{order.cart_items}}
+        <form id="form" method="POST">{%csrf_token%}
+            Name:<input type="text" name="name" required>
+            <br>
+            <br>
+            State:<input type="text" name="state" required>
+            <br>
+            <br>
+            pincode:<input type="text" name="pincode" required>
+            <br>
+            <br>
+            city:<input type="text" name="city" required>
+            <br>
+            <br>
+            Address:<input type="text" name="address" required>
+            <div class="submit" id="submitinfo">
+                <input type="submit">
+            </div>
+        </form>
+        <div class="hidden payment" id="paymentinfo"><a href="#"><button>make payment</button></a></div>
+    </div>
+    <script type="text/javascript">
+
+        var form=document.getElementById('form');
+        form.addEventListener("submit",function(e){
+            e.preventDefault();
+            document.getElementById('submitinfo').classList.add('hidden');
+            document.getElementById('paymentinfo').classList.remove('hidden');
+        
+        });
+
+        var total='{{order.cart_total}}';
+
+        document.getElementById('paymentinfo').addEventListener('click',function(){
+            var shippinginfo={
+                
+                'name':form.name.value,
+                'state':form.state.value,
+                'zipcode':form.pincode.value,
+                'city':form.city.value,
+                'address':form.address.value,
+
+            }
+            processorder(shippinginfo);
+        });
+
+            function processorder(shippinginfo)
+            {
+                var url="/process_order/";
+	fetch(url,{
+		method:"POST",
+		headers:{
+			'Content-Type': 'application/json',
+			'X-CSRFToken':csrftoken
+		},
+		body:JSON.stringify({'total':total,'shippinginfo':shippinginfo})
+	})
+	.then((response)=>{
+		return response.json()
+	})
+	.then((data)=>{
+        window.location.href = "{% url 'apparels' %}";
+	
+	})
+
+            }
+            
+
+
+       
+
+    </script>
     {%endblock%}
     
-</body>
-</html>
