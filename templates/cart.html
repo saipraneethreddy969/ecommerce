@@ -29,5 +29,5 @@
     <span id="totalleft"><Strong>Items:{{order.cart_items}}</Strong></span>
     <span id="totalright"><Strong>Price:${{order.cart_total}}</Strong></span>
 </div>
-
+<div class="checkouturl"><a href="{% url 'checkout' %}"><button>checkout</button></a></div>
 {%endblock%}
