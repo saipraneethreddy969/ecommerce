@@ -48,9 +48,11 @@ def register(request):
         email=request.POST['email']
         password=request.POST['password']
         user=User.objects.create_user(username=username,first_name=firstname,last_name=lastname,email=email,password=password)
-        customer.objects.create(user=user,name=username,email=email)
         if(user is not None):
+            customer.objects.create(user=user,name=username,email=email)
             return redirect('/')
+        else:
+            return HttpResponse("user exists")
     else:
         return render(request,'register.html')
 
